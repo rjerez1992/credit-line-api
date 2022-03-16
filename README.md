@@ -3,15 +3,17 @@ Basic API for credit line validation for customers based on given rules.
 
 ## Overview
 
-The purpose is to determine the credit line of customers given some specific values, related to the type of customer and other finnancial data.
+The purpose is to accept or reject a credit line application of customers given some specific values, related to the type of customer and other finnancial data.
 
-A "identifier" is requested on each application, this helps to manage the rules related to the same application beign sent more than once (ex: Once an application is accepted, the return values must be the same regarding any parameter changes). It also helps with the rules for the rate limiting, as it is only applied once an application has been procesed. No rate limit rules are defined for newly received applications.
-A basic endpoint that fetches and GUID was created for this purpose, but it could be possible for any external system to create those ids.
+An "identifier" is requested on each application, this helps to manage the rules related to the same application beign sent more than once, for example:
+*  Once an application is accepted, the return values must be the same regarding any parameter changes
+It also helps with the rules for the rate limiting, as those are only applied once an application has been procesed. No rate limit rules are defined for newly received applications.
+A basic endpoint that fetches an GUID was created for this purpose, but it could be possible for any external system to create those ids (string format).
 
-The project was separated into two sections, one for the service itself and one for the test suit (using xUnit). A string resource file was used to manage text messages that would be returned by the API.
+The solution was separated into two projects, one for the service itself and one for the test suit (using xUnit). A string resource file was used to manage text messages that would be returned by the API.
 
-On the service project it is a basic MVC application.For managing the logic of the credit line application, a service was created, which is managed by the controller that serves the requests. 
-For the rate limit, a basic middleware was created. It reads the application from the request and applies the limiting rules defined.
+On the service project; it is a basic MVC application. For managing the logic of the credit line application, a service was created, which is managed by the controller that serves the requests.
+For the rate limit, a basic middleware was created. It reads the application from the request and applies the limiting rules defined. (NOTE: The first rest of each application isn't counted towards the limit).
 
 The test suit is oriented towards verifying the rules for the credit-line acceptance.
 
