@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "326d7f8b-3c3d-4016-9909-34cd4af55f31",
+		"name": "CreditLineAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Credit Line - Get Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/credit-line/id",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"credit-line",
+						"id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Credit Line - Apply",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"d378cf76-dbdb-4289-9de8-66577bed70db\",\r\n    \"foundingType\": \"SME\",\r\n    \"cashBalance\": 435.30,\r\n    \"monthlyRevenue\": 4235.45,\r\n    \"requestedCreditLine\": 100,\r\n    \"requestedDate\": \"2021-07-19T16:32:59.860Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/credit-line/apply",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"credit-line",
+						"apply"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

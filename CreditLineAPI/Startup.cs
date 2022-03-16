@@ -1,4 +1,7 @@
-﻿namespace CreditLineAPI
+﻿using CreditLineAPI.Middlewares;
+using CreditLineAPI.Services;
+
+namespace CreditLineAPI
 {
     public class Startup
     {
@@ -12,6 +15,7 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddSingleton<ICreditLineApplicationService, CreditLineApplicationService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -21,7 +25,13 @@
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.MapWhen(context => context.Request.Path.StartsWithSegments("/credit-line/apply"), appBuilder =>
+            {
+                appBuilder.UseRateLimitMiddleware();
+                appBuilder.UseMvc();
+            });
+
+            app.UseMvc();            
         }
     }
 }
